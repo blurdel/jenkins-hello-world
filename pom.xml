@@ -10,9 +10,9 @@
     </parent>
 
     <groupId>com.blurdel</groupId>
-    <artifactId>docker-java-hello</artifactId>
+    <artifactId>jenkins-hello-world</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>docker-java-hello</name>
+    <name>jenkins-hello-world</name>
     <description>Demo project for Docker and Java</description>
 
     <properties>
