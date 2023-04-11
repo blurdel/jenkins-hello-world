@@ -19,7 +19,7 @@ pipeline {
                 echo "branch=${env.BRANCH_NAME}, unitTests=${params.UNITTEST}"
             }
         }
-        stage ('Test') {
+        stage ('Unit Test') {
             when {
                 expression {
 //                     env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'master'
