@@ -19,19 +19,6 @@ pipeline {
                 echo "branch=${env.BRANCH_NAME}, unitTests=${params.UNITTEST}"
             }
         }
-        stage ('Build') {
-            when {
-                expression {
-                    env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'master'
-                }
-            }
-            options { timeout(time: 3, unit: 'MINUTES') }
-            steps {
-                echo 'Stage: Build'
-                sh 'mvn clean verify -DskipTests'
-                archiveArtifacts(artifacts: '**/target/*.jar', fingerprint: true)
-            }
-        }
         stage ('Test') {
             when {
                 expression {
@@ -48,6 +35,20 @@ pipeline {
                 junit(allowEmptyResults: false, testResults: '**/surefire-reports/*.xml')
             }
         }
+        stage ('Build') {
+            when {
+                expression {
+                    env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'master'
+                }
+            }
+            options { timeout(time: 3, unit: 'MINUTES') }
+            steps {
+                echo 'Stage: Build'
+                sh 'mvn clean verify -DskipTests'
+                archiveArtifacts(artifacts: '**/target/*.jar', fingerprint: true)
+            }
+        }
+        /*
         stage ('Test Docker') {
             agent { dockerfile true }
             steps {
@@ -55,6 +56,7 @@ pipeline {
                 // sh 'node --version'
             }
         }
+        */
     }
     post {
         // Execute after all stages executed
