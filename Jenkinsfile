@@ -22,7 +22,7 @@ pipeline {
         stage ('Test') {
             when {
                 expression {
-                    env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'master'
+//                     env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'master'
                     params.UNITTEST == true
                 }
             }
@@ -36,15 +36,10 @@ pipeline {
             }
         }
         stage ('Build') {
-            when {
-                expression {
-                    env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'master'
-                }
-            }
             options { timeout(time: 3, unit: 'MINUTES') }
             steps {
                 echo 'Stage: Build'
-                sh 'mvn clean verify -DskipTests'
+                sh 'mvn clean package -DskipTests'
                 archiveArtifacts(artifacts: '**/target/*.jar', fingerprint: true)
             }
         }
