@@ -10,4 +10,4 @@ CMD ["java", "-jar", "service.jar"]
 # docker build -t jenkins-hello .
 
 # build container
-# docker run -d --name jenkins-hello -p 8080:8080 jenkins-hello
+# docker run -d --rm --name jenkins-hello -p 8080:8080 jenkins-hello
