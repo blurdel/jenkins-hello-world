@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webapp-deployment
+  name: hello-webapp-deployment
   labels:
-    app: webapp
+    app: hello-webapp
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: webapp
+      app: hello-webapp
   template:
     metadata:
       labels:
-        app: webapp
+        app: hello-webapp
     spec:
       containers:
-      - name: webapp
+      - name: hello-webapp
         image: blurdel/jenkins-hello:1.0.0
         ports:
         - containerPort: 8080
@@ -23,13 +23,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: webapp-service
+  name: hello-webapp-service
 spec:
   type: NodePort
   selector:
-    app: webapp
+    app: hello-webapp
   ports:
     - protocol: TCP
       port: 8080
       targetPort: 8080
-      nodePort: 30100
+      nodePort: 30111
