@@ -7,7 +7,7 @@ EXPOSE 8080
 CMD ["java", "-jar", "service.jar"]
 
 # build image
-# docker build -t jenkins-hello .
+# docker build -t jenkins-hello:1.0.0 .
 
 # build container
 # docker run -d --rm --name jenkins-hello -p 8080:8080 jenkins-hello
