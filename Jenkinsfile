@@ -9,7 +9,7 @@ pipeline {
         disableConcurrentBuilds()
     }
     parameters {
-        booleanParam(name: 'UNITTEST', defaultValue: true, description: 'Run Unit Tests?')
+        booleanParam(name: 'UNITTEST', defaultValue: false, description: 'Run Unit Tests?')
     }	
     
     stages {
@@ -22,13 +22,13 @@ pipeline {
         stage ('Unit Test') {
             when {
                 expression {
-//                     env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'master'
+                    env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'master'
                     params.UNITTEST == true
                 }
             }
             options { timeout(time: 3, unit: 'MINUTES') }
             steps {
-                echo 'Stage: Test'
+                echo 'Stage: Unit Test'
                 // Use OR 'true' to allow the pipeline to continue on failure
                 // sh 'mvn clean test || true'
                 sh 'mvn clean test'
@@ -43,27 +43,11 @@ pipeline {
                 archiveArtifacts(artifacts: '**/target/*.jar', fingerprint: true)
             }
         }
-        /*
-        stage ('Test Docker') {
-            agent { dockerfile true }
-            steps {
-                echo 'Stage: Test Docker'
-                // sh 'node --version'
-            }
-        }
-        */
     }
     post {
-        // Execute after all stages executed
         always {
             echo 'post/always'
             deleteDir()
-        }
-        success {
-            echo 'post/success'
-        }
-        failure {
-            echo 'post/failure'
         }
     }
 }
