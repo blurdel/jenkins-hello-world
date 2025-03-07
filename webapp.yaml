@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: hello-webapp
-        image: blurdel/jenkins-hello:1.0.1
+        image: blurdel/jenkins-hello-world:1.0.2
         ports:
         - containerPort: 8080
         # args:

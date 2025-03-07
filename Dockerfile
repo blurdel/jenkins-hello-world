@@ -3,7 +3,7 @@ FROM openjdk:17-jdk-slim as builder
 WORKDIR application
 
 # Set application jar-filename
-ARG JAR_FILE=target/jenkins-hello-world-0.0.1-SNAPSHOT.jar
+ARG JAR_FILE=target/jenkins-hello-world-1.0.2.jar
 
 COPY ${JAR_FILE} application.jar
 RUN java -Djarmode=layertools -jar application.jar extract
@@ -20,4 +20,4 @@ COPY --from=builder application/spring-boot-loader/ ./
 COPY --from=builder application/snapshot-dependencies/ ./
 COPY --from=builder application/application/ ./
 
-ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher"]
+ENTRYPOINT ["java", "org.springframework.boot.loader.launch.JarLauncher"]
