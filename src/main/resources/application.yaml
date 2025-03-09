@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: jenkins-hello-world
+
+logging:
+  level:
+    root: INFO # Default logging level for all loggers
+    com.blurdel.hello: DEBUG # Specific package logging level
+    org.springframework: WARN # Spring framework logging level
