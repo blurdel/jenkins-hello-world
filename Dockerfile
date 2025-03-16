@@ -1,6 +1,6 @@
-FROM openjdk:17-jdk-slim as builder
+FROM openjdk:17-jdk-slim AS builder
 
-WORKDIR application
+WORKDIR /application
 
 # Set application jar-filename
 ARG JAR_FILE=target/jenkins-hello-world-1.0.2.jar
@@ -13,7 +13,7 @@ FROM openjdk:17-jdk-slim
 
 EXPOSE 8080
 
-WORKDIR application
+WORKDIR /application
 
 COPY --from=builder application/dependencies/ ./
 COPY --from=builder application/spring-boot-loader/ ./
