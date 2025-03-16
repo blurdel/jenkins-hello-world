@@ -19,8 +19,4 @@ public class Greeting {
 		return greeting;
 	}
 
-//	public String getGreeting(String name) {
-//		return "Hello " + name;
-//	}
-	
 }

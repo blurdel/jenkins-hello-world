@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping({"/", "/hello"})
 public class HelloController {
 
-    private static final String template = "Hello, %s!";
+    private static final String template = "Hello %s!";
     private final AtomicLong counter = new AtomicLong();
 
 
@@ -28,7 +28,7 @@ public class HelloController {
 
 
     @GetMapping()
-    public Greeting getHello(@RequestParam(value = "name", defaultValue = "World!") String name) {
+    public Greeting getHello(@RequestParam(value = "name", defaultValue = "World") String name) {
         log.debug("/hello {}", String.format(template, name));
         return new Greeting(counter.incrementAndGet(), String.format(template, name));
     }

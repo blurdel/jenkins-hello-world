@@ -16,11 +16,11 @@ class DockerJavaHelloApplicationTests {
 	
 	@Test
 	void testGreeting() {
-		assertEquals("Hello", new Greeting(1, "Hello").getGreeting(), "Greeting method should return 'Hello World'");
+		assertEquals("Hello", new Greeting(1, "Hello").getGreeting());
 	}
 
 	@Test
-	void TestAll() {
+	void testGreetings() {
 		assertAll(
 				() -> assertEquals("Hello World", new Greeting(1, "Hello World").getGreeting()),
 				() -> assertEquals("Hello Fred", new Greeting(2, "Hello Fred").getGreeting())
