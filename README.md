@@ -1,17 +1,17 @@
 # jenkins-hello-world
-Basic Spring Boot REST Controller example - just Hello World
+Basic Spring Boot REST controller example - just Hello World endpoint
 
-#### DSO files
+### DSO files
 * Jenkinsfile
 * Dockerfile
-* webapp.yaml
+* k8s deployment
 
-#### Docker commands
-    # build image
+### Docker commands
+    # Build the image
     docker build -t jenkins-hello:1.0.0 .
 
-    # build container
-    docker run -d --rm --name jenkins-hello -p 8080:8080 jenkins-hello:1.0.0
+    # Run the container
+    docker run --rm -d --name jenkins-hello -p 8080:8080 jenkins-hello:1.0.0
 
-#### k8s commands
+### k8s deployment
     kubectl apply -f webapp.yaml
