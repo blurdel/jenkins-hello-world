@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
-@RequestMapping("/health")
+@RequestMapping("/healthz")
 public class HealthController {
 
     @GetMapping
     public ResponseEntity<?> getHealth() {
-        log.debug("/health");
+        log.debug("/healthz");
         return new ResponseEntity<>("Ok :-)", HttpStatus.OK);
     }
 

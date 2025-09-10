@@ -1,9 +1,12 @@
 FROM openjdk:17-jdk-slim AS builder
 
+ARG APP_VERSION=0.0.0
+RUN echo "APP_VERSION=${APP_VERSION}"
+
 WORKDIR /application
 
 # Set application jar-filename
-ARG JAR_FILE=target/jenkins-hello-world-1.0.2.jar
+ARG JAR_FILE=target/jenkins-hello-world-${APP_VERSION}.jar
 
 COPY ${JAR_FILE} application.jar
 RUN java -Djarmode=layertools -jar application.jar extract
