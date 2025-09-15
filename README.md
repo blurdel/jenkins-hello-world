@@ -5,6 +5,7 @@ Basic Spring Boot REST controller example - just Hello World endpoint
 * Jenkinsfile
 * Dockerfile
 * k8s deployment
+* helm charts
 
 ### Docker commands
     # Build the image
@@ -15,3 +16,6 @@ Basic Spring Boot REST controller example - just Hello World endpoint
 
 ### k8s deployment
     kubectl apply -f webapp.yaml
+
+### helm chart
+    helm install <release> ./helm
