@@ -9,4 +9,4 @@ fi
 
 source "${PROP_FILE}"
 
-docker build -t "${REGISTRY}"/"${APP_NAME}":"${APP_VERSION}" --build-arg APP_VERSION="${APP_VERSION}" .
+docker build -t "${REGISTRY}"/"${APP_NAME}":"${APP_VERSION}" .
