@@ -25,12 +25,19 @@ spec:
         ports:
         - name: http
           containerPort: {{ .Values.service.port }}
+        # env:
+        # - name: SPRING_MAIN_LOG_STARTUP_INFO
+        #   value: "true"
         {{- with .Values.livenessProbe }}
         livenessProbe:
           {{- toYaml . | nindent 10 }}
         {{- end }}
         {{- with .Values.readinessProbe }}
         readinessProbe:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+        {{- with .Values.startupProbe }}
+        startupProbe:
           {{- toYaml . | nindent 10 }}
         {{- end }}
         {{- with .Values.resources }}

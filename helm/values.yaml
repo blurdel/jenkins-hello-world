@@ -20,20 +20,19 @@ service:
   type: ClusterIP
   port: *appPort
   targetPort: *appPort
-  # nodePort: 30111
 
 resources:
   limits:
-    cpu: 100m
-    memory: 128Mi
+    cpu: 500m
+    memory: 512Mi
   requests:
-    cpu: 100m
-    memory: 128Mi
+    cpu: 256m
+    memory: 256Mi
 
 livenessProbe:
   httpGet:
     path: /health
-    port: *appPort
+    port: http
   initialDelaySeconds: 10
   periodSeconds: 10
   timeoutSeconds: 5
@@ -42,9 +41,18 @@ livenessProbe:
 readinessProbe:
   httpGet:
     path: /health
-    port: *appPort
+    port: http
   initialDelaySeconds: 10
   periodSeconds: 5
   timeoutSeconds: 3
   failureThreshold: 2
+  successThreshold: 1
+startupProbe:
+  httpGet:
+    path: /health
+    port: http
+  initialDelaySeconds: 5
+  periodSeconds: 5
+  timeoutSeconds: 3
+  failureThreshold: 6
   successThreshold: 1
