@@ -1,6 +1,6 @@
 apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
-  name: hello-ingress
+  name: {{ .Values.ingress.issuerName }}
 spec:
   selfSigned: {}
