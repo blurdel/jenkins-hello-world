@@ -11,4 +11,3 @@ spec:
   ports:
     - name: http
       port: {{ .Values.service.port }}
-      # nodePort: {{ .Values.service.nodePort }}

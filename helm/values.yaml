@@ -13,8 +13,8 @@ podLabels:
 
 ingress:
   host: hello.local
-  # issuerName: hello-ingress
-  # tlsSecret: hello-tls-data
+  issuerName: hello-ingress
+  tlsSecret: hello-tls-data
 
 service:
   type: ClusterIP
