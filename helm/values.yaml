@@ -9,7 +9,7 @@ image:
   pullPolicy: IfNotPresent
 
 podLabels:
-  "nodeType": "swit"
+  "nodeType": "SWIT"
 
 ingress:
   host: hello.local

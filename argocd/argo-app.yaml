@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jenkins-hello-world
+  namespace: argocd # Namespace where Argo CD is running
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/blurdel/jenkins-hello-world'
+    targetRevision: main
+    path: helm
+    # helm:
+    #   valueFiles:
+    #     - values.yaml                                   # Values file inside the Git path
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: hello
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+      - CreateNamespace=true

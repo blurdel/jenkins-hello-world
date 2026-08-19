@@ -16,6 +16,9 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
+      {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
         app: {{ .Chart.Name }}-{{ .Release.Name }}
     spec:
       containers:
@@ -25,9 +28,6 @@ spec:
         ports:
         - name: http
           containerPort: {{ .Values.service.port }}
-        # env:
-        # - name: SPRING_MAIN_LOG_STARTUP_INFO
-        #   value: "true"
         {{- with .Values.livenessProbe }}
         livenessProbe:
           {{- toYaml . | nindent 10 }}
