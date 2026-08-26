@@ -11,19 +11,33 @@ image:
 podLabels:
   "nodeType": "SWIT"
 
-ingress:
-  host: hello.local
-  issuerName: hello-ingress
-  tlsSecret: hello-tls-data
+podSecurityContext:
+  # fsGroup: 2000
+  seccompProfile:
+    type: RuntimeDefault
+
+securityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+    - ALL
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 10000
+  runAsGroup: 10000
 
 service:
   type: ClusterIP
   port: *appPort
   targetPort: *appPort
 
+ingress:
+  host: hello.local
+  issuerName: hello-ingress
+  tlsSecret: hello-tls-data
+
 resources:
   limits:
-    cpu: 500m
     memory: 512Mi
   requests:
     cpu: 256m
