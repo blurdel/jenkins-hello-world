@@ -70,3 +70,11 @@ startupProbe:
   timeoutSeconds: 3
   failureThreshold: 6
   successThreshold: 1
+
+volumeMounts:
+- name: tmp
+  mountPath: /tmp
+
+volumes:
+- name: tmp
+  emptyDir: {}
