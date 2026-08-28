@@ -12,19 +12,19 @@ podLabels:
   "nodeType": "SWIT"
 
 podSecurityContext:
-  # fsGroup: 2000
   seccompProfile:
     type: RuntimeDefault
 
 securityContext:
-  allowPrivilegeEscalation: false
   capabilities:
     drop:
     - ALL
+  privileged: false
+  allowPrivilegeEscalation: false
   readOnlyRootFilesystem: true
   runAsNonRoot: true
-  runAsUser: 10000
-  runAsGroup: 10000
+  runAsUser: 9999
+  runAsGroup: 9999
 
 service:
   type: ClusterIP
