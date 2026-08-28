@@ -17,7 +17,6 @@ spec:
     namespace: hello
   syncPolicy:
     automated:
-      prune: false
-      selfHeal: false
+      enabled: false
     syncOptions:
       - CreateNamespace=true
