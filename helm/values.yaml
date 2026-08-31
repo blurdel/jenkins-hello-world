@@ -1,7 +1,4 @@
 # Default values for the deployment
-global:
-  appPort: &appPort 8080
-
 replicas: 1
 image:
   repository: localhost:5000/jenkins-hello-world
@@ -28,8 +25,7 @@ securityContext:
 
 service:
   type: ClusterIP
-  port: *appPort
-  targetPort: *appPort
+  port: 8080
 
 ingress:
   host: hello.local
@@ -51,7 +47,6 @@ livenessProbe:
   periodSeconds: 10
   timeoutSeconds: 5
   failureThreshold: 3
-  successThreshold: 1
 readinessProbe:
   httpGet:
     path: /health
@@ -60,7 +55,6 @@ readinessProbe:
   periodSeconds: 5
   timeoutSeconds: 3
   failureThreshold: 2
-  successThreshold: 1
 startupProbe:
   httpGet:
     path: /health
@@ -69,7 +63,6 @@ startupProbe:
   periodSeconds: 5
   timeoutSeconds: 3
   failureThreshold: 6
-  successThreshold: 1
 
 volumeMounts:
 - name: tmp
