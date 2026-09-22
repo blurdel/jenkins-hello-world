@@ -9,9 +9,9 @@ spec:
     repoURL: 'https://github.com/blurdel/jenkins-hello-world'
     targetRevision: main
     path: helm
-    # helm:
-    #   valueFiles:
-    #     - values.yaml                                   # Values file inside the Git path
+    helm:
+      valueFiles:
+        - values.yaml
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: hello
